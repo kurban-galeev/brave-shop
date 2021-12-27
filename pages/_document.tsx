@@ -39,7 +39,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>Brave Shop</title>
           <link rel="icon" href="/sportShoe.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com"></link>
           <link rel="preconnect" href="https://fonts.gstatic.com"></link>
