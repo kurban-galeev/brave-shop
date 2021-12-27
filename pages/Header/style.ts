@@ -29,9 +29,10 @@ export const StyledImageMenu = styled.img`
   margin-left: 30px;
 `;
 export const StyledContainerCategories = styled.div``;
+
 export const StyledTextCategories = styled.text`
   margin-left: 8px;
-  font-family: Spline Sans;
+  font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
