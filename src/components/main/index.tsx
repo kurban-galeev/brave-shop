@@ -27,6 +27,7 @@ import {
   PriceItems,
   ContainerTitleImage,
   ContainerFooter,
+  ContainterTheContacts,
 } from './style';
 
 const toUpperFirstCase = (itm: string) => {
@@ -37,7 +38,7 @@ export const Main: React.FC = () => {
   const { items, isLoading, error, title } = useAppSelector(
     (state) => state.itemsReducers
   );
-  const [categories, setCategories] = useState<string>('All items');
+  const [categories, setCategories] = useState<string>('all items');
   useEffect(() => {
     dispatch(fetchAllItems());
     dispatch(fetchCategories());
@@ -85,7 +86,11 @@ export const Main: React.FC = () => {
       </ContainerContants>
       {isLoading && <Loading></Loading>}
       {error && <TextLogo>ERROR - {error}</TextLogo>}
-      <ContainerFooter></ContainerFooter>
+      <ContainerFooter>
+        <ContainterTheContacts>
+          <PriceItems>Don’t missout on once-in-a-while-deals:</PriceItems>
+        </ContainterTheContacts>
+      </ContainerFooter>
     </Container>
   );
 };

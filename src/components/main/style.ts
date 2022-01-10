@@ -118,7 +118,6 @@ export const ContainerContantsImage = styled.div`
 `;
 export const SignatureImage = styled.text`
   /* position: absolute; */
-  /* position: absolute; */
   margin: 0 15px 0 15px;
   /* margin-top 325px; */
   font-family: Open Sans;
@@ -153,4 +152,7 @@ export const ContainerFooter = styled.div`
   margin-top: 90px;
   margin-left: calc(20% + 30px);
   border-top: 1px solid rgba(0, 0, 0, 0.15);
+`;
+export const ContainterTheContacts = styled.div`
+  margin-top: 32px;
 `;

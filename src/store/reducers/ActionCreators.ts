@@ -28,7 +28,6 @@ export const fetchCategories = () => async (dispatch: AppDispatch) => {
 export const fetchFilterCategories =
   (category: string) => async (dispatch: AppDispatch) => {
     try {
-      console.log(category);
       if (category === 'all items') {
         dispatch(itemsSlice.actions.itemsFetching());
         const response = await axios.get<IItems[]>(
