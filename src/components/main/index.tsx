@@ -4,9 +4,10 @@ import {
   fetchCategories,
   fetchFilterCategories,
 } from '../../store/reducers/ActionCreators';
-import { logoList, menuList } from './constants';
+import { logoList, menuList, footerList } from './constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { IItems } from '../../models/IItems';
+import { IFooter } from '../../models/IFooter';
 import {
   ContainerHeader,
   ContainerLogo,
@@ -28,6 +29,8 @@ import {
   ContainerTitleImage,
   ContainerFooter,
   ContainterTheContacts,
+  ContainerImageFooter,
+  ContainerTitleContants,
 } from './style';
 
 const toUpperFirstCase = (itm: string) => {
@@ -71,7 +74,9 @@ export const Main: React.FC = () => {
         </ContainerImage>
       </ContainerHeader>
       <ContainerFilterAndSize></ContainerFilterAndSize>
-      <TitleContants>The {categories}</TitleContants>
+      <ContainerTitleContants>
+        <TitleContants>The {categories}</TitleContants>
+      </ContainerTitleContants>
       <ContainerContants>
         {items &&
           items.map((element: IItems, index: number) => (
@@ -84,13 +89,23 @@ export const Main: React.FC = () => {
             </ContainerContantsImage>
           ))}
       </ContainerContants>
-      {isLoading && <Loading></Loading>}
-      {error && <TextLogo>ERROR - {error}</TextLogo>}
+
       <ContainerFooter>
         <ContainterTheContacts>
-          <PriceItems>Don’t missout on once-in-a-while-deals:</PriceItems>
+          <ContainerImageFooter>
+            <PriceItems>Don’t missout on once-in-a-while-deals:</PriceItems>
+            {footerList.map((element: IFooter, index: number) => (
+              <ImageMenu src={element.path} key={index} />
+            ))}
+          </ContainerImageFooter>
+          <PriceItems>Support line: +250 788 467 808</PriceItems>
+        </ContainterTheContacts>
+        <ContainterTheContacts>
+          <PriceItems>Copyright 2021 © Sneaker City ltd</PriceItems>
         </ContainterTheContacts>
       </ContainerFooter>
+      {isLoading && <Loading></Loading>}
+      {error && <TextLogo>ERROR - {error}</TextLogo>}
     </Container>
   );
 };

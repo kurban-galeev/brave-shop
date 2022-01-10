@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 export const Container = styled.section`
-  /* position: relative; */
+  position: relative;
   margin: 0px;
 `;
 export const ContainerHeader = styled.div`
@@ -48,10 +48,10 @@ export const TextCategories = styled.span`
     cursor: pointer;
   }
 `;
-export const Loading = styled.span`
-  position: absolute;
-  margin-top: 25%;
-  margin-left: 50%;
+export const Loading = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -66,7 +66,7 @@ export const Loading = styled.span`
     top: 10px;
     left: 10px;
     border-radius: 50%;
-    background: white;
+    background-color: white;
   }
 
   @keyframes rotating {
@@ -82,6 +82,7 @@ export const ContainerContants = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
+  min-height: 600px;
   margin-left: calc(20% + 30px);
 `;
 
@@ -92,9 +93,12 @@ export const ContainerFilterAndSize = styled.div`
   width: 20%;
   height: 600px;
 `;
-export const TitleContants = styled.span`
-  margin-top: 200px;
+export const ContainerTitleContants = styled.div`
+  margin-top: 15px;
   margin-left: calc(20% + 30px);
+`;
+export const TitleContants = styled.span`
+  /* margin-top: 200px; */
   font-family: Open Sans;
   font-style: normal;
   font-weight: bold;
@@ -103,36 +107,33 @@ export const TitleContants = styled.span`
   color: #000000;
 `;
 export const ContantsImage = styled.img`
-  position: relative
-  margin: 15px 15px 15px 15px;
+  position: absolute
+  margin: 15px;
   width: 310px;
   height: 308px;
-  /* object-fit: cover; */
+  object-fit: cover;
 `;
 export const ContainerContantsImage = styled.div`
   position: relative;
+
   max-width: 315px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   max-height: max-content;
   margin: 15px 15px 0 0;
 `;
 export const SignatureImage = styled.text`
-  /* position: absolute; */
-  margin: 0 15px 0 15px;
-  /* margin-top 325px; */
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 26px;
 `;
-
 export const ColorText = styled.text`
   color: rgba(0, 0, 0, 0.65);
 `;
 export const PriceItems = styled(ColorText)`
   /* position: absolute; */
-  margin-left: 15px;
+  /* margin-left: 15px; */
   /* margin-top 325px; */
   font-family: Open Sans;
   font-style: normal;
@@ -141,6 +142,7 @@ export const PriceItems = styled(ColorText)`
   line-height: 24px;
 `;
 export const ContainerTitleImage = styled.div`
+  margin-left: 15px;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -149,10 +151,18 @@ export const ContainerTitleImage = styled.div`
   /* align-items: flex-start; */
 `;
 export const ContainerFooter = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 90px;
+  margin-right: 60px;
   margin-left: calc(20% + 30px);
   border-top: 1px solid rgba(0, 0, 0, 0.15);
 `;
 export const ContainterTheContacts = styled.div`
-  margin-top: 32px;
+  margin: 32px 0;
+`;
+export const ContainerImageFooter = styled.div`
+  display: flex;
+  align-items: center;
 `;
