@@ -8,6 +8,7 @@ import { logoList, menuList, footerList } from './constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { IItems } from '../../models/IItems';
 import { IFooter } from '../../models/IFooter';
+import { GlassMagnifier } from 'react-image-magnifiers';
 import {
   ContainerHeader,
   ContainerLogo,
@@ -81,7 +82,16 @@ export const Main: React.FC = () => {
         {items &&
           items.map((element: IItems, index: number) => (
             <ContainerContantsImage key={index}>
-              <ContantsImage src={element.image} />
+              <ContantsImage>
+                <GlassMagnifier
+                  imageSrc={element.image}
+                  magnifierSize="40%"
+                  allowOverflow={true}
+                  style={{
+                    height: '100%',
+                  }}
+                />
+              </ContantsImage>
               <ContainerTitleImage>
                 <SignatureImage>{element.title}</SignatureImage>
                 <PriceItems>{element.price}RWF</PriceItems>

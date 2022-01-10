@@ -106,19 +106,23 @@ export const TitleContants = styled.span`
   line-height: 32px;
   color: #000000;
 `;
-export const ContantsImage = styled.img`
-  position: absolute
+export const ContantsImage = styled.div`
+  position: relative;
+  /* display: flex; */
   margin: 15px;
-  width: 310px;
-  height: 308px;
-  object-fit: cover;
+  /* object-fit: contain; */
+  /* height: 300px; */
+  /* margin: 15px; */
+  /* max-width: 310px; */
+  /* max-height: 310px; */
 `;
 export const ContainerContantsImage = styled.div`
   position: relative;
-
+  display: flex;
   max-width: 315px;
+  /* min-height: 310px; */
   border: 1px solid rgba(0, 0, 0, 0.15);
-  max-height: max-content;
+  /*  */
   margin: 15px 15px 0 0;
 `;
 export const SignatureImage = styled.text`
