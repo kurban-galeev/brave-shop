@@ -1,9 +1,6 @@
-export interface IItems {
-  id: number;
+export interface IClothingInfo {
   title: string;
   price: number;
-  category: string;
-  description: string;
   image: string;
   rating: {
     rate: number;

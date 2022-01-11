@@ -47,3 +47,13 @@ export const fetchFilterCategories =
       );
     }
   };
+export const openDetailForm = () => async (dispatch: AppDispatch) => {
+  dispatch(itemsSlice.actions.detailFetcing());
+};
+export const closeDetailForm = () => async (dispatch: AppDispatch) => {
+  dispatch(itemsSlice.actions.detailCloseForm());
+};
+export const pasteClothingInfo =
+  (IClothingInfo: IItems) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.pasteInfo(IClothingInfo));
+  };

@@ -1,4 +1,5 @@
 import { IItems } from '../../models/IItems';
+// import { IClothingInfo } from '../../models/IClothingInfo';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // import { fetchAllItems } from './ActionCreators';
 
@@ -7,6 +8,8 @@ interface UserState {
   isLoading: boolean;
   error: string;
   title: string[];
+  isDetail: boolean;
+  clothingInfo: IItems;
 }
 
 const initialState: UserState = {
@@ -14,6 +17,19 @@ const initialState: UserState = {
   isLoading: false,
   error: '',
   title: ['all items'],
+  isDetail: false,
+  clothingInfo: {
+    id: 0,
+    title: '',
+    price: 0,
+    category: '',
+    description: '',
+    image: '',
+    rating: {
+      rate: 0,
+      count: 0,
+    },
+  },
 };
 
 export const itemsSlice = createSlice({
@@ -47,6 +63,15 @@ export const itemsSlice = createSlice({
     itemsFilterFetchingError: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    detailFetcing: (state) => {
+      state.isDetail = true;
+    },
+    detailCloseForm: (state) => {
+      state.isDetail = false;
+    },
+    pasteInfo: (state, action: PayloadAction<IItems[]>) => {
+      state.clothingInfo = action.payload;
     },
   },
 });

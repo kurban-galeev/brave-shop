@@ -3,6 +3,8 @@ import {
   fetchAllItems,
   fetchCategories,
   fetchFilterCategories,
+  openDetailForm,
+  pasteClothingInfo,
 } from '../../store/reducers/ActionCreators';
 import { logoList, menuList, footerList } from './constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -33,24 +35,57 @@ import {
   ContainerImageFooter,
   ContainerTitleContants,
 } from './style';
+import { Details } from '../details';
 
 const toUpperFirstCase = (itm: string) => {
   return itm[0].toUpperCase() + itm.slice(1);
 };
+const clearUrlFromAnchor = () => {
+  window.history.pushState('', document.title, window.location.pathname);
+};
+// const handleClickOnLogo = () => {
+//   addEventListener('click', ({ target }) => {
+//     if (target) {
+//       clearUrlFromAnchor();
+//       window.location.reload();
+//     }
+//   });
+// };
 export const Main: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { items, isLoading, error, title } = useAppSelector(
+  const { items, isLoading, error, title, isDetail } = useAppSelector(
     (state) => state.itemsReducers
   );
+  // const handleClick = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+  //   console.log(isDetail);
+  //   if (!target) {
+  //     dispatch(closeDetailForm());
+  //   } else {
+  //     dispatch(openDetailForm());
+  //   }
+  // };
+  // const [disable, setDisable] = useState<boolean>(false);
   const [categories, setCategories] = useState<string>('all items');
   useEffect(() => {
     dispatch(fetchAllItems());
     dispatch(fetchCategories());
   }, [dispatch]);
   return (
-    <Container>
+    <Container
+
+    // onClick={() => {
+    //   // dispatch(itemsSlice.actions.detailCloseForm);
+    //   dispatch(closeDetailForm());
+    // }}
+    >
+      {isDetail && <Details />}
       <ContainerHeader>
-        <ContainerLogo>
+        <ContainerLogo
+          onClick={() => {
+            clearUrlFromAnchor();
+            window.location.reload();
+          }}
+        >
           <LogoImage src={logoList.pathLogo} />
           <TextLogo>{logoList.textLogo}</TextLogo>
         </ContainerLogo>
@@ -63,6 +98,7 @@ export const Main: React.FC = () => {
                   dispatch(fetchFilterCategories(itm));
                   setCategories(itm);
                 }}
+                // onChange={handleClick}
               >
                 {toUpperFirstCase(itm)}
               </TextCategories>
@@ -74,32 +110,45 @@ export const Main: React.FC = () => {
           ))}
         </ContainerImage>
       </ContainerHeader>
-      <ContainerFilterAndSize></ContainerFilterAndSize>
+      <ContainerFilterAndSize
+        onClick={() => {
+          // dispatch(closeDetailForm());
+        }}
+      ></ContainerFilterAndSize>
       <ContainerTitleContants>
         <TitleContants>The {categories}</TitleContants>
       </ContainerTitleContants>
       <ContainerContants>
         {items &&
           items.map((element: IItems, index: number) => (
-            <ContainerContantsImage key={index}>
+            <ContainerContantsImage
+              key={index}
+              onClick={() => {
+                // setDisable(handleClick());
+                // setDisable(true);
+                // const arr = [];
+                dispatch(pasteClothingInfo(element));
+                dispatch(openDetailForm());
+              }}
+              // onChange={handleClick}
+            >
               <ContantsImage>
                 <GlassMagnifier
                   imageSrc={element.image}
                   magnifierSize="40%"
                   allowOverflow={true}
-                  style={{
-                    height: '100%',
-                  }}
                 />
               </ContantsImage>
               <ContainerTitleImage>
                 <SignatureImage>{element.title}</SignatureImage>
                 <PriceItems>{element.price}RWF</PriceItems>
+                <PriceItems>
+                  Rating: {element.rating.rate} Count: {element.rating.count}
+                </PriceItems>
               </ContainerTitleImage>
             </ContainerContantsImage>
           ))}
       </ContainerContants>
-
       <ContainerFooter>
         <ContainterTheContacts>
           <ContainerImageFooter>

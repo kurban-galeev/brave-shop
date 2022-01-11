@@ -13,6 +13,9 @@ export const ContainerHeader = styled.div`
 `;
 export const ContainerLogo = styled.div`
   margin-left: 64px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const LogoImage = styled.img``;
 
@@ -56,7 +59,8 @@ export const Loading = styled.div`
   height: 70px;
   border-radius: 50%;
   background: conic-gradient(from 360deg at 50% 50%, #999999, #6a6a6a, #3b3b3b);
-  animation: rotating 2s linear infinite;
+  /* border-color: #fff transparent transparent transparent; */
+  animation: rotating 1s linear infinite;
   }
   &:before {
     content: '';
@@ -66,7 +70,7 @@ export const Loading = styled.div`
     top: 10px;
     left: 10px;
     border-radius: 50%;
-    background-color: white;
+    background: white;
   }
 
   @keyframes rotating {
@@ -98,7 +102,6 @@ export const ContainerTitleContants = styled.div`
   margin-left: calc(20% + 30px);
 `;
 export const TitleContants = styled.span`
-  /* margin-top: 200px; */
   font-family: Open Sans;
   font-style: normal;
   font-weight: bold;
@@ -108,22 +111,26 @@ export const TitleContants = styled.span`
 `;
 export const ContantsImage = styled.div`
   position: relative;
-  /* display: flex; */
+  display: flex;
+  align-items: center;
   margin: 15px;
-  /* object-fit: contain; */
-  /* height: 300px; */
-  /* margin: 15px; */
-  /* max-width: 310px; */
-  /* max-height: 310px; */
+  /* object-fit: ; */
+  width: 210px;
+  height: 100%;
 `;
 export const ContainerContantsImage = styled.div`
   position: relative;
   display: flex;
-  max-width: 315px;
-  /* min-height: 310px; */
+  align-items: center;
+  flex-direction: column;
+  max-width: 317px;
+  min-width: 316px;
+  max-height: 570px;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  /*  */
   margin: 15px 15px 0 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const SignatureImage = styled.text`
   font-family: Open Sans;
@@ -136,9 +143,6 @@ export const ColorText = styled.text`
   color: rgba(0, 0, 0, 0.65);
 `;
 export const PriceItems = styled(ColorText)`
-  /* position: absolute; */
-  /* margin-left: 15px; */
-  /* margin-top 325px; */
   font-family: Open Sans;
   font-style: normal;
   font-weight: normal;
@@ -146,7 +150,7 @@ export const PriceItems = styled(ColorText)`
   line-height: 24px;
 `;
 export const ContainerTitleImage = styled.div`
-  margin-left: 15px;
+  margin: 15px;
   display: flex;
   position: relative;
   flex-direction: column;

@@ -51,8 +51,6 @@ export default class MyDocument extends Document {
             type="text/css"
             href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"
           ></link>
-          <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-          <script type="text/javascript" src="lib/blowup.js"></script>
         </Head>
         <body>
           <Main />
