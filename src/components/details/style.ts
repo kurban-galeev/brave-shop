@@ -24,10 +24,15 @@ export const Container = styled.div`
   /* filter: blur(2px); */
 `;
 export const ContainerForImage = styled.div`
-  height: 60vh;
+  /* margin: 15px; */
+  margin-left: 10vw;
+  width: 25vw;
+  height: 100%;
 `;
 export const ImageMain = styled.img`
-  object-fit: cover;
+  object-fit: contain;
+  width: 25vw;
+  height: 100%;
   /* width: 100%; */
 `;
 export const Loading = styled.div`

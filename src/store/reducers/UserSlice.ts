@@ -70,7 +70,7 @@ export const itemsSlice = createSlice({
     detailCloseForm: (state) => {
       state.isDetail = false;
     },
-    pasteInfo: (state, action: PayloadAction<IItems[]>) => {
+    pasteInfo: (state, action: PayloadAction<IItems>) => {
       state.clothingInfo = action.payload;
     },
   },
