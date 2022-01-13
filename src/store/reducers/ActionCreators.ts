@@ -57,3 +57,7 @@ export const pasteClothingInfo =
   (IClothingInfo: IItems) => async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.pasteInfo(IClothingInfo));
   };
+export const setMainCategory =
+  (MainCategory: string) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.setMainCategory(MainCategory));
+  };

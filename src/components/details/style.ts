@@ -4,36 +4,127 @@ export const FormDetails = styled.form`
   top: calc(81px + 15px);
   left: 15px;
   right: 15px;
-  height: 70vh;
+  height: 80vh;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
   overflow-y: hidden;
-  z-index: 1;
+  z-index: 2;
 `;
 export const Container = styled.div`
-  /* display: flex; */
-  /* background-color: black; */
+  background-color: rgba(0, 0, 0, 0.5);
+
   position: absolute;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  /* &:hover {
-    cursor: pointer;
-  } */
-  /* filter: blur(2px); */
+`;
+export const TitleImage = styled.h1`
+  margin: 0;
+  margin-bottom: 15px;
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 35px;
+`;
+export const ContainerTitle = styled.div`
+  position: absolute;
+  top: 15px;
+  left: 5vw;
+  max-width: 50vw;
+`;
+export const PriceItems = styled.p`
+  color: rgba(0, 0, 0, 0.65);
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
 `;
 export const ContainerForImage = styled.div`
-  /* margin: 15px; */
-  margin-left: 10vw;
-  width: 25vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60vw;
   height: 100%;
+`;
+export const ImageHeart = styled.img`
+  position: absolute;
+  left: 95%;
+  bottom: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const ContainerDetails = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+`;
+export const TitleDescription = styled.p`
+  margin-top: 35px;
+  margin-right: 35px;
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+`;
+export const TextDescription = styled(TitleDescription)`
+  margin-top: 15px;
+  color: rgba(0, 0, 0, 0.65);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+`;
+export const ContainerAddToCart = styled.div`
+  bottom: 50px;
+  position: absolute;
+  display: flex;
+  align-items: center;
+`;
+export const InputCountItems = styled.input`
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+`;
+export const ButtonAddToCart = styled.button`
+  padding: 10px;
+  background: #d90429;
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  border: none;
+`;
+export const ImageMinus = styled.img`
+  margin: 0 15px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 export const ImageMain = styled.img`
   object-fit: contain;
-  width: 25vw;
-  height: 100%;
+  margin-top: 45px;
+  align-items: center;
   /* width: 100%; */
+  height: 40vh;
+  /* width: 100%; */
+`;
+export const ContainerDescription = styled.div`
+  position: relative;
+  width: 40vw;
+  /* margin-top: 35px; */
+  /* width: 100%; */
+  height: 100%;
 `;
 export const Loading = styled.div`
   position: fixed;
@@ -56,6 +147,7 @@ export const Loading = styled.div`
     border-radius: 50%;
     background: white;
   }
+
 
   @keyframes rotating {
     from {

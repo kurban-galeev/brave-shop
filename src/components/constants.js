@@ -3,9 +3,9 @@ export const logoList = {
   textLogo: 'SC.',
 };
 export const menuList = [
-  { path: '/header/shoppingCart.svg' },
-  { path: '/header/heart.svg' },
-  { path: '/header/user.svg' },
+  { name: 'shoppingCart', path: '/header/shoppingCart.svg' },
+  { name: 'heart', path: '/header/heart.svg' },
+  { name: 'user', path: '/header/user.svg' },
 ];
 export const footerList = [
   { path: '/footer/twitter.svg' },

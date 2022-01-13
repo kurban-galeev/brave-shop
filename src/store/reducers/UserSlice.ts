@@ -10,6 +10,7 @@ interface UserState {
   title: string[];
   isDetail: boolean;
   clothingInfo: IItems;
+  mainCategory: string;
 }
 
 const initialState: UserState = {
@@ -30,6 +31,7 @@ const initialState: UserState = {
       count: 0,
     },
   },
+  mainCategory: 'all items',
 };
 
 export const itemsSlice = createSlice({
@@ -54,7 +56,9 @@ export const itemsSlice = createSlice({
     categoriesFetchingSuccess: (state, action: PayloadAction<string[]>) => {
       state.isLoading = false;
       state.error = '';
-      state.title = state.title.concat(action.payload);
+      if (state.title.length === 1) {
+        state.title = state.title.concat(action.payload);
+      }
     },
     categoriesFetchingError: (state, action: PayloadAction<string>) => {
       state.isLoading = false;
@@ -72,6 +76,9 @@ export const itemsSlice = createSlice({
     },
     pasteInfo: (state, action: PayloadAction<IItems>) => {
       state.clothingInfo = action.payload;
+    },
+    setMainCategory: (state, action: PayloadAction<string>) => {
+      state.mainCategory = action.payload;
     },
   },
 });

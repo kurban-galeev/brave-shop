@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Header } from '../header';
+import { Footer } from '../footer';
 import {
   fetchAllItems,
-  fetchCategories,
-  fetchFilterCategories,
   openDetailForm,
   pasteClothingInfo,
 } from '../../store/reducers/ActionCreators';
-import { logoList, menuList, footerList } from './constants';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { IItems } from '../../models/IItems';
-import { IFooter } from '../../models/IFooter';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import {
-  ContainerHeader,
-  ContainerLogo,
-  LogoImage,
   TextLogo,
-  ContainerImage,
-  ImageMenu,
-  ContainerCategories,
-  TextCategories,
   Loading,
   Container,
   ContainerContants,
@@ -30,93 +21,25 @@ import {
   SignatureImage,
   PriceItems,
   ContainerTitleImage,
-  ContainerFooter,
-  ContainterTheContacts,
-  ContainerImageFooter,
   ContainerTitleContants,
 } from './style';
 import { Details } from '../details';
 
-const toUpperFirstCase = (itm: string) => {
-  return itm[0].toUpperCase() + itm.slice(1);
-};
-const clearUrlFromAnchor = () => {
-  window.history.pushState('', document.title, window.location.pathname);
-};
-// const handleClickOnLogo = () => {
-//   addEventListener('click', ({ target }) => {
-//     if (target) {
-//       clearUrlFromAnchor();
-//       window.location.reload();
-//     }
-//   });
-// };
-export const Main: React.FC = () => {
+export const MainForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { items, isLoading, error, title, isDetail } = useAppSelector(
+  const { items, isLoading, error, isDetail, mainCategory } = useAppSelector(
     (state) => state.itemsReducers
   );
-  // const handleClick = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-  //   console.log(isDetail);
-  //   if (!target) {
-  //     dispatch(closeDetailForm());
-  //   } else {
-  //     dispatch(openDetailForm());
-  //   }
-  // };
-  // const [disable, setDisable] = useState<boolean>(false);
-  const [categories, setCategories] = useState<string>('all items');
   useEffect(() => {
     dispatch(fetchAllItems());
-    dispatch(fetchCategories());
   }, [dispatch]);
   return (
-    <Container
-
-    // onClick={() => {
-    //   // dispatch(itemsSlice.actions.detailCloseForm);
-    //   dispatch(closeDetailForm());
-    // }}
-    >
+    <Container>
       {isDetail && <Details />}
-      <ContainerHeader>
-        <ContainerLogo
-          onClick={() => {
-            clearUrlFromAnchor();
-            window.location.reload();
-          }}
-        >
-          <LogoImage src={logoList.pathLogo} />
-          <TextLogo>{logoList.textLogo}</TextLogo>
-        </ContainerLogo>
-        <ContainerCategories>
-          {title &&
-            title.map((itm: string, index: number) => (
-              <TextCategories
-                key={index}
-                onClick={() => {
-                  dispatch(fetchFilterCategories(itm));
-                  setCategories(itm);
-                }}
-                // onChange={handleClick}
-              >
-                {toUpperFirstCase(itm)}
-              </TextCategories>
-            ))}
-        </ContainerCategories>
-        <ContainerImage>
-          {menuList.map((element, index) => (
-            <ImageMenu key={index} src={element.path} />
-          ))}
-        </ContainerImage>
-      </ContainerHeader>
-      <ContainerFilterAndSize
-        onClick={() => {
-          // dispatch(closeDetailForm());
-        }}
-      ></ContainerFilterAndSize>
+      <Header />
+      <ContainerFilterAndSize></ContainerFilterAndSize>
       <ContainerTitleContants>
-        <TitleContants>The {categories}</TitleContants>
+        <TitleContants>The {mainCategory}</TitleContants>
       </ContainerTitleContants>
       <ContainerContants>
         {items &&
@@ -124,13 +47,9 @@ export const Main: React.FC = () => {
             <ContainerContantsImage
               key={index}
               onClick={() => {
-                // setDisable(handleClick());
-                // setDisable(true);
-                // const arr = [];
                 dispatch(pasteClothingInfo(element));
                 dispatch(openDetailForm());
               }}
-              // onChange={handleClick}
             >
               <ContantsImage>
                 <GlassMagnifier
@@ -149,20 +68,7 @@ export const Main: React.FC = () => {
             </ContainerContantsImage>
           ))}
       </ContainerContants>
-      <ContainerFooter>
-        <ContainterTheContacts>
-          <ContainerImageFooter>
-            <PriceItems>Don’t missout on once-in-a-while-deals:</PriceItems>
-            {footerList.map((element: IFooter, index: number) => (
-              <ImageMenu src={element.path} key={index} />
-            ))}
-          </ContainerImageFooter>
-          <PriceItems>Support line: +250 788 467 808</PriceItems>
-        </ContainterTheContacts>
-        <ContainterTheContacts>
-          <PriceItems>Copyright 2021 © Sneaker City ltd</PriceItems>
-        </ContainterTheContacts>
-      </ContainerFooter>
+      <Footer />
       {isLoading && <Loading></Loading>}
       {error && <TextLogo>ERROR - {error}</TextLogo>}
     </Container>
