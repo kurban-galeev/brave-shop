@@ -28,7 +28,19 @@ export const TextLogo = styled.text`
 export const ContainerImage = styled.div`
   margin-right: 64px;
 `;
-export const ImageMenu = styled.img`
+export const ImageHeart = styled.img`
+  margin-left: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const ImageCart = styled.img`
+  margin-left: 30px;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+export const ImageUser = styled.img`
   margin-left: 30px;
   &:hover {
     cursor: pointer;

@@ -4,11 +4,13 @@ import {
   LogoImage,
   TextLogo,
   ContainerImage,
-  ImageMenu,
+  ImageHeart,
+  ImageCart,
+  ImageUser,
   ContainerCategories,
   TextCategories,
 } from './style';
-import { logoList, menuList } from '../constants';
+import { logoList } from '../constants';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import {
@@ -25,7 +27,9 @@ const toUpperFirstCase = (itm: string) => {
 export const Header: React.FC = () => {
   const router: NextRouter = useRouter();
   const dispatch = useAppDispatch();
-  const { title } = useAppSelector((state) => state.itemsReducers);
+  const { title, statusCart, statusHeart } = useAppSelector(
+    (state) => state.itemsReducers
+  );
   useEffect(() => {
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -33,9 +37,9 @@ export const Header: React.FC = () => {
     <ContainerHeader>
       <ContainerLogo
         onClick={() => {
-          router.push('/');
           dispatch(setMainCategory('all items'));
           dispatch(fetchFilterCategories('all items'));
+          router.push('/');
         }}
       >
         <LogoImage src={logoList.pathLogo} />
@@ -56,15 +60,28 @@ export const Header: React.FC = () => {
           ))}
       </ContainerCategories>
       <ContainerImage>
-        {menuList.map((element, index) => (
-          <ImageMenu
-            key={index}
-            src={element.path}
-            onClick={() => {
-              router.push('/cart');
-            }}
-          />
-        ))}
+        <ImageCart
+          src={statusCart}
+          onClick={() => {
+            router.push('/cart');
+          }}
+        />
+        <ImageHeart
+          src={statusHeart}
+          onClick={() => {
+            dispatch(setMainCategory('all items'));
+            dispatch(fetchFilterCategories('all items'));
+            router.push('/');
+          }}
+        />
+        <ImageUser
+          src="/header/user.svg"
+          onClick={() => {
+            dispatch(setMainCategory('all items'));
+            dispatch(fetchFilterCategories('all items'));
+            router.push('/');
+          }}
+        />
       </ContainerImage>
     </ContainerHeader>
   );

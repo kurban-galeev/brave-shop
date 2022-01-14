@@ -52,7 +52,7 @@ export const ContainerContants = styled.div`
 `;
 
 export const ContainerFilterAndSize = styled.div`
-  position: absolute;
+  position: fixed;
   margin 15px;
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 20%;

@@ -2,8 +2,8 @@ import styled from 'styled-components';
 export const FormDetails = styled.form`
   position: fixed;
   top: calc(81px + 15px);
-  left: 15px;
-  right: 15px;
+  left: 50px;
+  right: 50px;
   height: 80vh;
   border: 1px solid rgba(0, 0, 0, 0.15);
   background-color: white;
@@ -104,6 +104,9 @@ export const ButtonAddToCart = styled.button`
   line-height: 24px;
   color: #ffffff;
   border: none;
+  &:hover {
+    background: #750017;
+  }
 `;
 export const ImageMinus = styled.img`
   margin: 0 15px;
@@ -121,6 +124,7 @@ export const ImageMain = styled.img`
 `;
 export const ContainerDescription = styled.div`
   position: relative;
+  margin-left: 30px;
   width: 40vw;
   /* margin-top: 35px; */
   /* width: 100%; */

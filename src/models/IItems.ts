@@ -5,6 +5,7 @@ export interface IItems {
   category: string;
   description: string;
   image: string;
+  countItem: number;
   rating: {
     rate: number;
     count: number;

@@ -17,22 +17,29 @@ import {
   ImageMinus,
 } from './style';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { closeDetailForm } from '../../store/reducers/ActionCreators';
+import {
+  closeDetailForm,
+  pasteItemsForCart,
+  editStatusCart,
+  editStatusHeart,
+  pasteCountItem,
+} from '../../store/reducers/ActionCreators';
 import { menuList } from '../constants';
 import { useState } from 'react';
 
-import { NextRouter, useRouter } from 'next/router';
+// import { NextRouter, useRouter } from 'next/router';
 // const router: NextRouter = useRouter();
 const returnPathImageHeart = () => {
   return menuList.filter((element) => element.name === 'heart');
 };
 
 export const Details: React.FC = () => {
-  const router: NextRouter = useRouter();
+  // const router: NextRouter = useRouter();
   const dispatch = useAppDispatch();
   const { clothingInfo } = useAppSelector((state) => state.itemsReducers);
   const pathImageHeart = returnPathImageHeart();
   const [countItem, setCountItem] = useState(1);
+  console.log(clothingInfo);
   const handleChangeCount = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,6 +61,7 @@ export const Details: React.FC = () => {
       setCountItem(countItem - 1);
     }
   };
+
   // const handle;
   return (
     <Container
@@ -68,7 +76,13 @@ export const Details: React.FC = () => {
               <TitleImage>{clothingInfo.title}</TitleImage>
               <PriceItems>Price: {clothingInfo.price}RWF</PriceItems>
               {pathImageHeart.map((elem, index: number) => (
-                <ImageHeart key={index} src={elem.path} />
+                <ImageHeart
+                  key={index}
+                  src={elem.path}
+                  onClick={() => {
+                    dispatch(editStatusHeart('/header/heartRed.svg'));
+                  }}
+                />
               ))}
             </ContainerTitle>
             <ImageMain src={clothingInfo.image} />
@@ -102,9 +116,17 @@ export const Details: React.FC = () => {
                 }}
               />
               <ButtonAddToCart
-                // type="submit"
+                type="button"
                 onClick={() => {
-                  router.push('/cart');
+                  const count = { countItem: countItem };
+                  const obj = Object.assign({}, clothingInfo, count);
+                  // obj.id = clothingInfo.id;
+                  // clothingInfo.countItem = countItem;
+                  // obj.countItem = countItem;
+                  // (countItem element.id)
+                  dispatch(pasteCountItem(countItem));
+                  dispatch(pasteItemsForCart(obj));
+                  dispatch(editStatusCart('/header/shoppingCartRed.svg'));
                 }}
               >
                 Add to Cart
