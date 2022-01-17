@@ -66,6 +66,10 @@ export const pasteItemsForCart =
   (IClothingInfo: IClothingInfo) => async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.itemsCart(IClothingInfo));
   };
+export const pasteCountItemForClothingInfo =
+  (count: number) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.pasteCountItemForClothingInfo(count));
+  };
 export const editStatusCart =
   (StatusCart: string) => async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.editStatusCart(StatusCart));
@@ -75,6 +79,7 @@ export const editStatusHeart =
     dispatch(itemsSlice.actions.editStatusHeart(StatusHeart));
   };
 export const pasteCountItem =
-  (CountItem: number) => async (dispatch: AppDispatch) => {
+  (CountItem: { count: number; index: number }) =>
+  async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.pasteCountItem(CountItem));
   };

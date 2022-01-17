@@ -1,15 +1,10 @@
 import { Header } from '../header';
 import { Footer } from '../footer';
-import { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
 import { IClothingInfo } from '../../models/IClothingInfo';
-// import {
-//   fetchFilterCategories,
-//   setMainCategory,
-//   fetchCategories,
-// } from '../../store/reducers/ActionCreators';
 import {
   Container,
+  ContainerCartAndSum,
   TitleCart,
   ContainerCart,
   NameItem,
@@ -21,81 +16,121 @@ import {
   ContainerInput,
   PriceText,
   ContainerDescriptionItem,
+  ContainerSummary,
+  TitleSummary,
+  ContainerSubTotal,
+  TextOrder,
 } from './style';
 import { pasteCountItem } from '../../store/reducers/ActionCreators';
-const handleInputArray = (Array: IClothingInfo[]) => {
-  // Array.filter((element) => Array.map());
+
+const getSumPriceItem = (price: number, count: number) => {
+  return (price * count).toFixed(2);
+};
+const getTotalSumItem = (array: IClothingInfo[]) => {
+  let sum = 0;
+  array.map((element) => {
+    sum += element.countItem * element.price;
+  });
+  return sum.toFixed(2);
 };
 export const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
   const { itemsForCart } = useAppSelector((state) => state.itemsReducers);
-  console.log(itemsForCart);
-  // const [countItemm, setCountItem] = useState(1);
-  const handleChangeCount = ({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeCount = (
+    { target }: React.ChangeEvent<HTMLInputElement>,
+    index: number,
+    count: number
+  ) => {
     const countValue = target.value;
-    // if (Number(countValue) <= count && Number(countValue) > 0) {
-    //   dispatch(pasteCountItem(Number(countValue)));
-    // }
-    if (Number(countValue) > 0) {
-      dispatch(pasteCountItem(Number(countValue)));
+    if (Number(countValue) > 0 && Number(countValue) <= count) {
+      dispatch(pasteCountItem({ count: Number(countValue), index: index }));
     }
   };
 
-  const handleAddingCount = (count: number, countValue: number) => {
+  const handleAddingCount = (
+    count: number,
+    countValue: number,
+    index: number
+  ) => {
     if (countValue < count) {
-      dispatch(pasteCountItem(Number(countValue) + 1));
+      dispatch(pasteCountItem({ count: Number(countValue) + 1, index: index }));
     }
   };
-  const handleDecCount = (countValue: number) => {
+  const handleDecCount = (countValue: number, index: number) => {
     if (countValue > 1) {
-      dispatch(pasteCountItem(Number(countValue) - 1));
+      dispatch(pasteCountItem({ count: Number(countValue) - 1, index: index }));
     }
   };
   return (
     <Container>
       <Header />
-      <ContainerCart>
-        <TitleCart>Your shopping cart</TitleCart>
-        {itemsForCart.map((element, index: number) => (
-          <ContainerItem key={index}>
-            <ContainerInput>
-              <ContainerImage>
-                <ImageItem src={element.image} />
-              </ContainerImage>
-              <ContainerDescriptionItem>
-                <NameItem>{element.title}</NameItem>
-                <PriceText>{element.price}RWF</PriceText>
-              </ContainerDescriptionItem>
-            </ContainerInput>
-            <ContainerInput>
-              <ImageMinus
-                src="/details/minus.svg"
-                onClick={() => {
-                  console.log(element.countItem);
-                  handleDecCount(element.countItem);
-                }}
-              />
-              <InputCountItems
-                required={true}
-                type="number"
-                min="1"
-                max="999"
-                value={element.countItem}
-                onChange={handleChangeCount}
-              />
-              <ImageMinus
-                src="/details/plus.svg"
-                onClick={() => {
-                  handleAddingCount(element.rating.count, element.countItem);
-                }}
-              />
-              <NameItem>{element.price}RWF</NameItem>
-            </ContainerInput>
-          </ContainerItem>
-        ))}
-      </ContainerCart>
+      <ContainerCartAndSum>
+        <ContainerCart>
+          <TitleCart>Your shopping cart</TitleCart>
+          {itemsForCart.map((element, index: number) => (
+            <ContainerItem key={index}>
+              <ContainerInput>
+                <ContainerImage>
+                  <ImageItem src={element.image} />
+                </ContainerImage>
+                <ContainerDescriptionItem>
+                  <NameItem>{element.title}</NameItem>
+                  <PriceText>{element.price}RWF</PriceText>
+                </ContainerDescriptionItem>
+              </ContainerInput>
+              <ContainerInput>
+                <ImageMinus
+                  src="/details/minus.svg"
+                  onClick={() => {
+                    console.log(element.countItem);
+                    handleDecCount(element.countItem, index);
+                  }}
+                />
+                <InputCountItems
+                  required={true}
+                  type="number"
+                  min="1"
+                  max="999"
+                  value={element.countItem}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    handleChangeCount(event, index, element.rating.count);
+                  }}
+                />
+                <ImageMinus
+                  src="/details/plus.svg"
+                  onClick={() => {
+                    handleAddingCount(
+                      element.rating.count,
+                      element.countItem,
+                      index
+                    );
+                  }}
+                />
+                <NameItem>
+                  {getSumPriceItem(element.price, element.countItem)}RWF
+                </NameItem>
+              </ContainerInput>
+            </ContainerItem>
+          ))}
+        </ContainerCart>
+        <ContainerSummary>
+          <TitleSummary>Order summary</TitleSummary>
+          <ContainerSubTotal>
+            <PriceText>Sub total:</PriceText>
+            {itemsForCart.map((element, index: number) => (
+              <TextOrder key={index}>
+                {element.countItem} x {element.price}RWF:{' '}
+                {getSumPriceItem(element.price, element.countItem)}RWF
+              </TextOrder>
+            ))}
+            <PriceText>Delivery free:</PriceText>
+            {/* <TextOrder>0RWF</TextOrder> */}
+          </ContainerSubTotal>
+          <TitleSummary>
+            Total sum: {getTotalSumItem(itemsForCart)}RWF
+          </TitleSummary>
+        </ContainerSummary>
+      </ContainerCartAndSum>
       <Footer />
     </Container>
   );

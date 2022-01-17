@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ContainerHeader = styled.div`
+  /* position: fixed; */
+  z-index: 1;
   width: 100%;
   height: 80px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);

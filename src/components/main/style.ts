@@ -3,7 +3,7 @@ export const Container = styled.section`
   position: relative;
   margin: 0px;
 `;
-export const TextLogo = styled.text`
+export const TextLogo = styled.p`
   margin-left: 8px;
   font-family: Spline Sans, sans-serif;
   font-style: normal;
@@ -54,6 +54,7 @@ export const ContainerContants = styled.div`
 export const ContainerFilterAndSize = styled.div`
   position: fixed;
   margin 15px;
+  /* margin-top: calc(15px + 80px); */
   border: 1px solid rgba(0, 0, 0, 0.15);
   width: 20%;
   height: 600px;

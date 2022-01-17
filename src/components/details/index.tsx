@@ -22,23 +22,18 @@ import {
   pasteItemsForCart,
   editStatusCart,
   editStatusHeart,
-  pasteCountItem,
 } from '../../store/reducers/ActionCreators';
 import { menuList } from '../constants';
 import { useState } from 'react';
 
-// import { NextRouter, useRouter } from 'next/router';
-// const router: NextRouter = useRouter();
 const returnPathImageHeart = () => {
   return menuList.filter((element) => element.name === 'heart');
 };
-
 export const Details: React.FC = () => {
-  // const router: NextRouter = useRouter();
   const dispatch = useAppDispatch();
   const { clothingInfo } = useAppSelector((state) => state.itemsReducers);
   const pathImageHeart = returnPathImageHeart();
-  const [countItem, setCountItem] = useState(1);
+  const [countItem, setCountItem] = useState(clothingInfo.countItem);
   console.log(clothingInfo);
   const handleChangeCount = ({
     target,
@@ -120,11 +115,6 @@ export const Details: React.FC = () => {
                 onClick={() => {
                   const count = { countItem: countItem };
                   const obj = Object.assign({}, clothingInfo, count);
-                  // obj.id = clothingInfo.id;
-                  // clothingInfo.countItem = countItem;
-                  // obj.countItem = countItem;
-                  // (countItem element.id)
-                  dispatch(pasteCountItem(countItem));
                   dispatch(pasteItemsForCart(obj));
                   dispatch(editStatusCart('/header/shoppingCartRed.svg'));
                 }}

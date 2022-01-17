@@ -27,9 +27,8 @@ import { Details } from '../details';
 
 export const MainForm: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { items, isLoading, error, isDetail, mainCategory } = useAppSelector(
-    (state) => state.itemsReducers
-  );
+  const { items, isLoading, error, isDetail, mainCategory, itemsForCart } =
+    useAppSelector((state) => state.itemsReducers);
   useEffect(() => {
     dispatch(fetchAllItems());
   }, [dispatch]);
@@ -47,8 +46,21 @@ export const MainForm: React.FC = () => {
             <ContainerContantsImage
               key={index}
               onClick={() => {
-                dispatch(pasteClothingInfo(element));
-                dispatch(openDetailForm());
+                const same = itemsForCart.find((el) => el.id === element.id);
+                // if same != 'undefa'
+                if (same !== undefined) {
+                  const obj = Object.assign({}, element, {
+                    countItem: same.countItem,
+                  });
+                  dispatch(pasteClothingInfo(obj));
+                  dispatch(openDetailForm());
+                } else {
+                  const obj = Object.assign({}, element, {
+                    countItem: 1,
+                  });
+                  dispatch(pasteClothingInfo(obj));
+                  dispatch(openDetailForm());
+                }
               }}
             >
               <ContantsImage>

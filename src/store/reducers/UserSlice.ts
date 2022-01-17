@@ -44,7 +44,19 @@ const initialState: UserState = {
   statusCart: '/header/shoppingCart.svg',
   statusHeart: '/header/heart.svg',
 };
-
+const handleInputArray = (Array: IClothingInfo[]) => {
+  const itemsCart = [...Array].reduce(
+    (acc: IClothingInfo[], entry: IClothingInfo) => {
+      const id = entry.id;
+      const same = acc.find((element) => element.id === id);
+      if (same !== undefined) same.countItem = entry.countItem;
+      else acc.push({ ...entry });
+      return acc;
+    },
+    []
+  );
+  return itemsCart;
+};
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,
@@ -88,14 +100,21 @@ export const itemsSlice = createSlice({
     pasteInfo: (state, action: PayloadAction<IClothingInfo>) => {
       state.clothingInfo = action.payload;
     },
-    pasteCountItem: (state, action: PayloadAction<number>) => {
+    pasteCountItemForClothingInfo: (state, action: PayloadAction<number>) => {
+      // const obj = Object.assign({}, state.clothingInfo, {
+      //   countItem: action.payload,
+      // });
       state.clothingInfo.countItem = action.payload;
+    },
+    pasteCountItem: (state, action: PayloadAction<ICount>) => {
+      state.itemsForCart[action.payload.index].countItem = action.payload.count;
     },
     setMainCategory: (state, action: PayloadAction<string>) => {
       state.mainCategory = action.payload;
     },
     itemsCart: (state, action: PayloadAction<IClothingInfo>) => {
-      state.itemsForCart = state.itemsForCart.concat(action.payload);
+      const arr = handleInputArray(state.itemsForCart.concat(action.payload));
+      state.itemsForCart = arr;
     },
     editStatusCart: (state, action: PayloadAction<string>) => {
       state.statusCart = action.payload;

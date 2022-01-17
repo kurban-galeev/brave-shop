@@ -1,4 +1,4 @@
 export interface ICount {
-  id: number;
-  countItem: number;
+  count: number;
+  index: number;
 }
