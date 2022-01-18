@@ -1,6 +1,5 @@
 import { AppDispatch } from '../store';
 import axios from 'axios';
-import { IItems } from '../../models/IItems';
 import { IClothingInfo } from '../../models/IClothingInfo';
 import { itemsSlice } from './UserSlice';
 

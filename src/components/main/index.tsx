@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { Header } from '../header';
 import { Footer } from '../footer';
+// import ReactSlider from 'react-slider';
+import Slider, { Range } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import {
   fetchAllItems,
   openDetailForm,
@@ -22,21 +25,49 @@ import {
   PriceItems,
   ContainerTitleImage,
   ContainerTitleContants,
+  ContainerSliderRange,
+  RangeContainer,
 } from './style';
 import { Details } from '../details';
+import { Filter } from '../filter';
 
 export const MainForm: React.FC = () => {
   const dispatch = useAppDispatch();
+  const tabIndex = [0, 100];
+  const ariaLabelGroupForHandles = ['Min Rating', 'Max Rating'];
+  const maxRange = 'red';
+  const minRange = 0;
+  // const [];
   const { items, isLoading, error, isDetail, mainCategory, itemsForCart } =
     useAppSelector((state) => state.itemsReducers);
   useEffect(() => {
-    dispatch(fetchAllItems());
-  }, [dispatch]);
+    if (mainCategory === 'all items') dispatch(fetchAllItems());
+  }, [mainCategory, dispatch]);
   return (
     <Container>
       {isDetail && <Details />}
       <Header />
-      <ContainerFilterAndSize></ContainerFilterAndSize>
+      <ContainerFilterAndSize>
+        <Filter />
+        {/* <Slider value={tabIndex[0]} /> */}
+        <PriceItems>Price range</PriceItems>
+        <ContainerSliderRange>
+          <Range
+            defaultValue={tabIndex}
+            // className={RangeContainer}
+            pushable={true}
+            ariaLabelledByGroupForHandles={ariaLabelGroupForHandles}
+          />
+        </ContainerSliderRange>
+        <PriceItems>Rating range</PriceItems>
+        <ContainerSliderRange>
+          <Range
+            defaultValue={tabIndex}
+            pushable={true}
+            ariaLabelledByGroupForHandles={ariaLabelGroupForHandles}
+          />
+        </ContainerSliderRange>
+      </ContainerFilterAndSize>
       <ContainerTitleContants>
         <TitleContants>The {mainCategory}</TitleContants>
       </ContainerTitleContants>

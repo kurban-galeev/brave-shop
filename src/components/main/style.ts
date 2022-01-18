@@ -122,3 +122,9 @@ export const ContainerTitleImage = styled.div`
   justify-content: flex-end;
   /* align-items: flex-start; */
 `;
+export const ContainerSliderRange = styled.div`
+  margin: 30px 15px;
+`;
+export const RangeContainer = styled.div`
+  background-color: rgba(0, 0, 0, 0.15);
+`;
