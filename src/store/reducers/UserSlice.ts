@@ -2,7 +2,6 @@ import { IItems } from '../../models/IItems';
 import { ICount } from '../../models/ICount';
 import { IClothingInfo } from '../../models/IClothingInfo';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-// import { fetchAllItems } from './ActionCreators';
 
 interface UserState {
   items: IItems[];
@@ -15,7 +14,10 @@ interface UserState {
   itemsForCart: IClothingInfo[];
   statusCart: string;
   statusHeart: string;
-  // countItem: ICount[];
+  firstValuePrice: number;
+  firstValueRating: number;
+  lastValuePrice: number;
+  lastValueRating: number;
 }
 
 const initialState: UserState = {
@@ -25,6 +27,10 @@ const initialState: UserState = {
   title: ['all items'],
   isDetail: false,
   // countItem: [],
+  firstValuePrice: 0,
+  firstValueRating: 0,
+  lastValuePrice: 0,
+  lastValueRating: 0,
   clothingInfo: {
     id: 0,
     title: '',
@@ -57,6 +63,25 @@ const handleInputArray = (Array: IClothingInfo[]) => {
   );
   return itemsCart;
 };
+const getFirstAndLastPrice = (Array: IClothingInfo[]) => {
+  const maxElem = Math.max(
+    ...Object.values([...Array]).map((elem) => elem.price)
+  );
+  const minElem = Math.min(
+    ...Object.values([...Array]).map((elem) => elem.price)
+  );
+  return { maxElem, minElem };
+};
+const getFirstAndLastRating = (Array: IClothingInfo[]) => {
+  const maxElem = Math.max(
+    ...Object.values([...Array]).map((elem) => elem.rating.rate)
+  );
+  const minElem = Math.min(
+    ...Object.values([...Array]).map((elem) => elem.rating.rate)
+  );
+  return { maxElem, minElem };
+};
+// const getFir
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,
@@ -121,6 +146,22 @@ export const itemsSlice = createSlice({
     },
     editStatusHeart: (state, action: PayloadAction<string>) => {
       state.statusHeart = action.payload;
+    },
+    getFirstAndLastValuePrice: (state) => {
+      const { maxElem, minElem } = getFirstAndLastPrice(state.items);
+      state.firstValuePrice = minElem;
+      state.lastValuePrice = maxElem;
+    },
+    getFirstAndLastValueRating: (state) => {
+      const { maxElem, minElem } = getFirstAndLastRating(state.items);
+      state.firstValueRating = minElem;
+      state.lastValueRating = maxElem;
+    },
+    firstValuePriceChanging: (state, action: PayloadAction<number>) => {
+      state.firstValuePrice = action.payload;
+    },
+    lastValuePriceChanging: (state, action: PayloadAction<number>) => {
+      state.lastValuePrice = action.payload;
     },
   },
 });

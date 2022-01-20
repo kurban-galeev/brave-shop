@@ -82,3 +82,20 @@ export const pasteCountItem =
   async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.pasteCountItem(CountItem));
   };
+export const getFirstAndLastValuePrice =
+  () => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.getFirstAndLastValuePrice());
+  };
+export const getFirstAndLastValueRating =
+  () => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.getFirstAndLastValueRating());
+  };
+
+export const firstValuePriceChanging =
+  (firstValuePrice: number) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.firstValuePriceChanging(firstValuePrice));
+  };
+export const lastValuePriceChanging =
+  (lastValuePrice: number) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.lastValuePriceChanging(lastValuePrice));
+  };
