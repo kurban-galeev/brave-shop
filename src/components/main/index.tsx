@@ -8,7 +8,7 @@ import {
   pasteClothingInfo,
 } from '../../store/reducers/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { IItems } from '../../models/IItems';
+import { IItems } from '../../models/interfaces';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import {
   TextLogo,
@@ -61,8 +61,6 @@ export const MainForm: React.FC = () => {
         {items &&
           items
             .filter((elem: IItems) => {
-              console.log(elem.price, 'Price');
-              console.log(lastValuePrice);
               if (
                 elem.price <= lastValuePrice &&
                 elem.price >= firstValuePrice &&
@@ -79,7 +77,6 @@ export const MainForm: React.FC = () => {
                 key={index}
                 onClick={() => {
                   const same = itemsForCart.find((el) => el.id === element.id);
-                  // if same != 'undefa'
                   if (same !== undefined) {
                     const obj = Object.assign({}, element, {
                       countItem: same.countItem,

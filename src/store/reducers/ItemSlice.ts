@@ -1,6 +1,6 @@
-import { IItems } from '../../models/IItems';
-import { ICount } from '../../models/ICount';
-import { IClothingInfo } from '../../models/IClothingInfo';
+import { IItems } from '../../models/IInterfaces';
+import { ICount } from '../../models/IInterfaces';
+import { IClothingInfo } from '../../models/IInterfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface UserState {

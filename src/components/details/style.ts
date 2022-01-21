@@ -118,16 +118,12 @@ export const ImageMain = styled.img`
   object-fit: contain;
   margin-top: 45px;
   align-items: center;
-  /* width: 100%; */
   height: 40vh;
-  /* width: 100%; */
 `;
 export const ContainerDescription = styled.div`
   position: relative;
   margin-left: 30px;
   width: 40vw;
-  /* margin-top: 35px; */
-  /* width: 100%; */
   height: 100%;
 `;
 export const Loading = styled.div`
@@ -138,7 +134,6 @@ export const Loading = styled.div`
   height: 70px;
   border-radius: 50%;
   background: conic-gradient(from 360deg at 50% 50%, #999999, #6a6a6a, #3b3b3b);
-  /* border-color: #fff transparent transparent transparent; */
   animation: rotating 1s linear infinite;
   }
   &:before {

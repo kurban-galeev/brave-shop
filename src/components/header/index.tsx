@@ -19,7 +19,6 @@ import {
   fetchCategories,
 } from '../../store/reducers/ActionCreators';
 import { NextRouter, useRouter } from 'next/router';
-import { ContantsImage } from '../main/style';
 
 const toUpperFirstCase = (itm: string) => {
   return itm[0].toUpperCase() + itm.slice(1);
@@ -53,7 +52,6 @@ export const Header: React.FC = () => {
               key={index}
               onClick={() => {
                 router.push('/');
-                console.log(itm, '- itm');
                 dispatch(fetchFilterCategories(itm));
                 dispatch(setMainCategory(itm));
               }}

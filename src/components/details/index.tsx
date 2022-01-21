@@ -34,7 +34,6 @@ export const Details: React.FC = () => {
   const { clothingInfo } = useAppSelector((state) => state.itemsReducers);
   const pathImageHeart = returnPathImageHeart();
   const [countItem, setCountItem] = useState(clothingInfo.countItem);
-  console.log(clothingInfo);
   const handleChangeCount = ({
     target,
   }: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,8 +55,6 @@ export const Details: React.FC = () => {
       setCountItem(countItem - 1);
     }
   };
-
-  // const handle;
   return (
     <Container
       onClick={() => {

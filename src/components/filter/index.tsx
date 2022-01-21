@@ -9,7 +9,7 @@ import {
   SliderLabel,
   Container,
 } from './style';
-import { IClothingInfo } from '../../models/IClothingInfo';
+import { IClothingInfo } from '../../models/IInterfaces';
 import { useEffect } from 'react';
 import {
   firstValuePriceChanging,
@@ -21,8 +21,6 @@ import {
 } from '../../store/reducers/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AppDispatch } from '../../store/store';
-// import Slider, { Range } from 'rc-slider';
-// import { redirect } from 'next/dist/server/api-utils';
 const getFirstAndLastPrice = (Array: IClothingInfo[]) => {
   const maxPrice = Math.max(
     ...Object.values([...Array]).map((elem) => elem.price)
@@ -66,16 +64,6 @@ export const Filter: React.FC = () => {
   const { minPrice, maxPrice } = getFirstAndLastPrice(items);
   const { minRating, maxRating } = getFirstAndLastRating(items);
   const { minCount, maxCount } = getFirstAndLastCount(items);
-
-  // const handleChangeLastCount = (
-  //   { target }: React.ChangeEvent<HTMLInputElement>,
-  //   count: number
-  // ) => {
-  //   const countValue = target.value;
-  //   if (Number(countValue) >= count) {
-  //     dispatch(lastValueCountChanging(Number(countValue)));
-  //   }
-  // };
   const handleChangeFirst = (
     { target }: React.ChangeEvent<HTMLInputElement>,
     count: number,

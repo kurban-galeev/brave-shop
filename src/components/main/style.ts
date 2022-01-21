@@ -20,7 +20,6 @@ export const Loading = styled.div`
   height: 70px;
   border-radius: 50%;
   background: conic-gradient(from 360deg at 50% 50%, #999999, #6a6a6a, #3b3b3b);
-  /* border-color: #fff transparent transparent transparent; */
   animation: rotating 1s linear infinite;
   }
   &:before {
@@ -54,11 +53,9 @@ export const ContainerContants = styled.div`
 export const ContainerFilterAndSize = styled.div`
   position: fixed;
   margin 15px;
-  /* margin-top: calc(15px + 80px); */
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-bottom: none;
   width: 20%;
-  /* height: 600px; */
 `;
 export const ContainerTitleContants = styled.div`
   margin-top: 15px;
@@ -77,7 +74,6 @@ export const ContantsImage = styled.div`
   display: flex;
   align-items: center;
   margin: 15px;
-  /* object-fit: ; */
   width: 210px;
   height: 100%;
 `;
@@ -89,7 +85,6 @@ export const ContainerContantsImage = styled.div`
   max-width: 317px;
   min-width: 316px;
   max-height: 570px;
-  /* border: 1px solid rgba(0, 0, 0, 0.15); */
   margin: 15px 15px 0 0;
   &:hover {
     cursor: pointer;
@@ -121,7 +116,6 @@ export const ContainerTitleImage = styled.div`
   flex-direction: column;
   align-content: flex-start;
   justify-content: flex-end;
-  /* align-items: flex-start; */
 `;
 export const ContainerSliderRange = styled.div`
   margin: 30px 15px;

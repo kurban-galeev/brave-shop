@@ -92,3 +92,18 @@ export const TitleSummary = styled(NameItem)`
 export const TextOrder = styled(NameItem)`
   margin: 0;
 `;
+export const ButtonSubmit = styled.button`
+  padding: 10px;
+  background: #d90429;
+  font-family: Spline Sans, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  border: none;
+  margin-left: 24px;
+  &:hover {
+    background: #750017;
+  }
+`;

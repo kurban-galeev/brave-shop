@@ -1,7 +1,7 @@
 import { Header } from '../header';
 import { Footer } from '../footer';
 import { useAppSelector, useAppDispatch } from '../../hooks/redux';
-import { IClothingInfo } from '../../models/IClothingInfo';
+import { IClothingInfo } from '../../models/IInterfaces';
 import {
   Container,
   ContainerCartAndSum,
@@ -20,6 +20,7 @@ import {
   TitleSummary,
   ContainerSubTotal,
   TextOrder,
+  ButtonSubmit,
 } from './style';
 import { pasteCountItem } from '../../store/reducers/ActionCreators';
 
@@ -124,11 +125,11 @@ export const Cart: React.FC = () => {
               </TextOrder>
             ))}
             <PriceText>Delivery free:</PriceText>
-            {/* <TextOrder>0RWF</TextOrder> */}
           </ContainerSubTotal>
           <TitleSummary>
             Total sum: {getTotalSumItem(itemsForCart)}RWF
           </TitleSummary>
+          <ButtonSubmit>Proceed to checkout</ButtonSubmit>
         </ContainerSummary>
       </ContainerCartAndSum>
       <Footer />

@@ -12,7 +12,8 @@ export const SliderInput = styled.input`
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 5px;
   height: 20px;
-  width: 100px;
+  min-width: 40px;
+  width: 5vw;
 `;
 export const SliderLabel = styled.label`
   font-family: Spline Sans, sans-serif;
@@ -63,12 +64,10 @@ export const Slider = styled.input`
   &::-moz-range-track {
     -moz-appearance: none;
     height: 5px;
-    /* height: 1.5vw; */
   }
   &::-ms-track {
     appearance: none;
     height: 5px;
-    /* height: 1.5vw; */
   }
   &::-webkit-slider-thumb {
     -webkit-appearance: none;

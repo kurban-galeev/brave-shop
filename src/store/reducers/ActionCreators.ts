@@ -1,7 +1,7 @@
 import { AppDispatch } from '../store';
 import axios from 'axios';
-import { IClothingInfo } from '../../models/IClothingInfo';
-import { itemsSlice } from './UserSlice';
+import { IClothingInfo } from '../../models/IInterfaces';
+import { itemsSlice } from './ItemSlice';
 
 export const fetchAllItems = () => async (dispatch: AppDispatch) => {
   try {
