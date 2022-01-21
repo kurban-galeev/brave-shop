@@ -1,9 +1,10 @@
 # brave-shop
+
 Задача следующая сверстать магазин по макету, макет примерный
 
 на главной показываются товары с запроса products
 
-в хедере должны показываться категории с использованием запроса products/categories 
+в хедере должны показываться категории с использованием запроса products/categories
 
 при открытии категории, соотвественно должны открываться товары, принадлежащие данное категории
 
@@ -15,14 +16,16 @@ https://www.figma.com/file/o1RvJqllT2Ce7m9aNqMjJ4/Sneaker-City%3A-A-concept-for-
 
 макет - https://www.figma.com/file/o1RvJqllT2Ce7m9aNqMjJ4/Sneaker-City%3A-A-concept-for-a-foot-wear-store-(Community)?node-id=36%3A31
 
-api -  https://fakestoreapi.com/docs 
+api - https://fakestoreapi.com/docs
 
 (енд поинтом для корзины не пользуемся, будем хранить ее в сторе ридакса)
 
 создай у себя в гитхабе репу и дай мне инвайт
 
-потом ты с главной ветки создашь ветку например  - feature/implement-home-page
+потом ты с главной ветки создашь ветку например - feature/implement-home-page
 
 и будешь делать там главную страницу
 
 как только ты ее сделаешь - отправляешь мне мр, я его проверяю
+
+Ссылка на релиз: https://brave-shop.vercel.app/
