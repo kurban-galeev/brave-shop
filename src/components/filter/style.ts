@@ -58,16 +58,16 @@ export const Slider = styled.input`
   pointer-events: none;
   &::-webkit-slider-runnable-track {
     -webkit-appearance: none;
-    /* height: 5px; */
+    height: 5px;
   }
   &::-moz-range-track {
     -moz-appearance: none;
-    /* height: 5px; */
+    height: 5px;
     /* height: 1.5vw; */
   }
   &::-ms-track {
     appearance: none;
-    /* height: 5px; */
+    height: 5px;
     /* height: 1.5vw; */
   }
   &::-webkit-slider-thumb {

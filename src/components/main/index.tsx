@@ -6,8 +6,6 @@ import {
   fetchAllItems,
   openDetailForm,
   pasteClothingInfo,
-  getFirstAndLastValuePrice,
-  getFirstAndLastValueRating,
 } from '../../store/reducers/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { IItems } from '../../models/IItems';
@@ -43,23 +41,7 @@ export const MainForm: React.FC = () => {
     firstValueRating,
     lastValueRating,
   } = useAppSelector((state) => state.itemsReducers);
-  // const newItems = items.filter((element) => {
-  //   lastValuePrice > element.price;
-  //   element.price >= firstValuePrice;
-  //   lastValueRating >= element.rating.rate;
-  //   element.rating.rate >= firstValueRating;
-
-  // });
-  console.log(items);
-  console.log(
-    firstValuePrice,
-    lastValuePrice,
-    firstValueRating,
-    lastValueRating
-  );
   useEffect(() => {
-    dispatch(getFirstAndLastValuePrice());
-    dispatch(getFirstAndLastValueRating());
     if (mainCategory === 'all items') dispatch(fetchAllItems());
   }, [mainCategory, dispatch]);
 
@@ -77,10 +59,16 @@ export const MainForm: React.FC = () => {
         {items &&
           items
             .filter((elem: IItems) => {
-              // elem.rating.rate != Number(firstValueRating);
-              elem.price >= firstValuePrice;
-              lastValueRating >= elem.rating.rate;
-              elem.rating.rate >= firstValueRating;
+              console.log(elem.price, 'Price');
+              console.log(lastValuePrice);
+              if (
+                elem.price <= lastValuePrice &&
+                elem.price >= firstValuePrice &&
+                elem.rating.rate <= lastValueRating &&
+                elem.rating.rate >= firstValueRating
+              ) {
+                return elem;
+              }
             })
             .map((element: IItems, index: number) => (
               <ContainerContantsImage

@@ -63,24 +63,6 @@ const handleInputArray = (Array: IClothingInfo[]) => {
   );
   return itemsCart;
 };
-const getFirstAndLastPrice = (Array: IClothingInfo[]) => {
-  const maxElem = Math.max(
-    ...Object.values([...Array]).map((elem) => elem.price)
-  );
-  const minElem = Math.min(
-    ...Object.values([...Array]).map((elem) => elem.price)
-  );
-  return { maxElem, minElem };
-};
-const getFirstAndLastRating = (Array: IClothingInfo[]) => {
-  const maxElem = Math.max(
-    ...Object.values([...Array]).map((elem) => elem.rating.rate)
-  );
-  const minElem = Math.min(
-    ...Object.values([...Array]).map((elem) => elem.rating.rate)
-  );
-  return { maxElem, minElem };
-};
 // const getFir
 export const itemsSlice = createSlice({
   name: 'items',
@@ -147,21 +129,27 @@ export const itemsSlice = createSlice({
     editStatusHeart: (state, action: PayloadAction<string>) => {
       state.statusHeart = action.payload;
     },
-    getFirstAndLastValuePrice: (state) => {
-      const { maxElem, minElem } = getFirstAndLastPrice(state.items);
-      state.firstValuePrice = minElem;
-      state.lastValuePrice = maxElem;
-    },
-    getFirstAndLastValueRating: (state) => {
-      const { maxElem, minElem } = getFirstAndLastRating(state.items);
-      state.firstValueRating = minElem;
-      state.lastValueRating = maxElem;
-    },
+    // getFirstAndLastValuePrice: (state) => {
+    //   const { maxElem, minElem } = getFirstAndLastPrice(state.items);
+    //   state.firstValuePrice = minElem;
+    //   state.lastValuePrice = maxElem;
+    // },
+    // getFirstAndLastValueRating: (state) => {
+    //   const { maxElem, minElem } = getFirstAndLastRating(state.items);
+    //   state.firstValueRating = minElem;
+    //   state.lastValueRating = maxElem;
+    // },
     firstValuePriceChanging: (state, action: PayloadAction<number>) => {
       state.firstValuePrice = action.payload;
     },
     lastValuePriceChanging: (state, action: PayloadAction<number>) => {
       state.lastValuePrice = action.payload;
+    },
+    firstValueRatingChanging: (state, action: PayloadAction<number>) => {
+      state.firstValueRating = action.payload;
+    },
+    lastValueRatingChanging: (state, action: PayloadAction<number>) => {
+      state.lastValueRating = action.payload;
     },
   },
 });
