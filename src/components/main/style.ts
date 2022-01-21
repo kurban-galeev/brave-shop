@@ -56,8 +56,9 @@ export const ContainerFilterAndSize = styled.div`
   margin 15px;
   /* margin-top: calc(15px + 80px); */
   border: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: none;
   width: 20%;
-  height: 600px;
+  /* height: 600px; */
 `;
 export const ContainerTitleContants = styled.div`
   margin-top: 15px;

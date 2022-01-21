@@ -99,3 +99,11 @@ export const lastValueRatingChanging =
   (lastValueRating: number) => async (dispatch: AppDispatch) => {
     dispatch(itemsSlice.actions.lastValueRatingChanging(lastValueRating));
   };
+export const firstValueCountChanging =
+  (firstValueCount: number) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.firstValueCountChanging(firstValueCount));
+  };
+export const lastValueCountChanging =
+  (lastValueCount: number) => async (dispatch: AppDispatch) => {
+    dispatch(itemsSlice.actions.lastValueCountChanging(lastValueCount));
+  };

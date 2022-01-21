@@ -40,6 +40,8 @@ export const MainForm: React.FC = () => {
     lastValuePrice,
     firstValueRating,
     lastValueRating,
+    firstValueCount,
+    lastValueCount,
   } = useAppSelector((state) => state.itemsReducers);
   useEffect(() => {
     if (mainCategory === 'all items') dispatch(fetchAllItems());
@@ -65,7 +67,9 @@ export const MainForm: React.FC = () => {
                 elem.price <= lastValuePrice &&
                 elem.price >= firstValuePrice &&
                 elem.rating.rate <= lastValueRating &&
-                elem.rating.rate >= firstValueRating
+                elem.rating.rate >= firstValueRating &&
+                elem.rating.count <= lastValueCount &&
+                elem.rating.count >= firstValueCount
               ) {
                 return elem;
               }

@@ -16,8 +16,10 @@ interface UserState {
   statusHeart: string;
   firstValuePrice: number;
   firstValueRating: number;
+  firstValueCount: number;
   lastValuePrice: number;
   lastValueRating: number;
+  lastValueCount: number;
 }
 
 const initialState: UserState = {
@@ -29,8 +31,10 @@ const initialState: UserState = {
   // countItem: [],
   firstValuePrice: 0,
   firstValueRating: 0,
+  firstValueCount: 0,
   lastValuePrice: 0,
   lastValueRating: 0,
+  lastValueCount: 0,
   clothingInfo: {
     id: 0,
     title: '',
@@ -108,9 +112,6 @@ export const itemsSlice = createSlice({
       state.clothingInfo = action.payload;
     },
     pasteCountItemForClothingInfo: (state, action: PayloadAction<number>) => {
-      // const obj = Object.assign({}, state.clothingInfo, {
-      //   countItem: action.payload,
-      // });
       state.clothingInfo.countItem = action.payload;
     },
     pasteCountItem: (state, action: PayloadAction<ICount>) => {
@@ -129,16 +130,6 @@ export const itemsSlice = createSlice({
     editStatusHeart: (state, action: PayloadAction<string>) => {
       state.statusHeart = action.payload;
     },
-    // getFirstAndLastValuePrice: (state) => {
-    //   const { maxElem, minElem } = getFirstAndLastPrice(state.items);
-    //   state.firstValuePrice = minElem;
-    //   state.lastValuePrice = maxElem;
-    // },
-    // getFirstAndLastValueRating: (state) => {
-    //   const { maxElem, minElem } = getFirstAndLastRating(state.items);
-    //   state.firstValueRating = minElem;
-    //   state.lastValueRating = maxElem;
-    // },
     firstValuePriceChanging: (state, action: PayloadAction<number>) => {
       state.firstValuePrice = action.payload;
     },
@@ -150,6 +141,12 @@ export const itemsSlice = createSlice({
     },
     lastValueRatingChanging: (state, action: PayloadAction<number>) => {
       state.lastValueRating = action.payload;
+    },
+    firstValueCountChanging: (state, action: PayloadAction<number>) => {
+      state.firstValueCount = action.payload;
+    },
+    lastValueCountChanging: (state, action: PayloadAction<number>) => {
+      state.lastValueCount = action.payload;
     },
   },
 });

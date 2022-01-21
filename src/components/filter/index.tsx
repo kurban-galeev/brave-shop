@@ -10,14 +10,17 @@ import {
   Container,
 } from './style';
 import { IClothingInfo } from '../../models/IClothingInfo';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   firstValuePriceChanging,
   lastValuePriceChanging,
   firstValueRatingChanging,
   lastValueRatingChanging,
+  firstValueCountChanging,
+  lastValueCountChanging,
 } from '../../store/reducers/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { AppDispatch } from '../../store/store';
 // import Slider, { Range } from 'rc-slider';
 // import { redirect } from 'next/dist/server/api-utils';
 const getFirstAndLastPrice = (Array: IClothingInfo[]) => {
@@ -38,6 +41,16 @@ const getFirstAndLastRating = (Array: IClothingInfo[]) => {
   );
   return { maxRating, minRating };
 };
+const getFirstAndLastCount = (Array: IClothingInfo[]) => {
+  const maxCount = Math.max(
+    ...Object.values([...Array]).map((elem) => elem.rating.count)
+  );
+  const minCount = Math.min(
+    ...Object.values([...Array]).map((elem) => elem.rating.count)
+  );
+  return { maxCount, minCount };
+};
+
 export const Filter: React.FC = () => {
   const dispatch = useAppDispatch();
   const {
@@ -45,23 +58,53 @@ export const Filter: React.FC = () => {
     lastValuePrice,
     firstValueRating,
     lastValueRating,
+    firstValueCount,
+    lastValueCount,
     items,
   } = useAppSelector((state) => state.itemsReducers);
-  // const firtsPrice = firstValuePrice;
-  // dispatch(getFirstAndLastValuePrice());
-  // dispatch(getFirstAndLastValueRating());
-  // const [value, setValue] = useState(firstValuePrice);
+
   const { minPrice, maxPrice } = getFirstAndLastPrice(items);
   const { minRating, maxRating } = getFirstAndLastRating(items);
+  const { minCount, maxCount } = getFirstAndLastCount(items);
 
-  // const [firstPrice, setFirstPrice] = useState(firstValuePrice);
-  // const [lastPrice, setLastRating] = useState(lastValuePrice);
+  // const handleChangeLastCount = (
+  //   { target }: React.ChangeEvent<HTMLInputElement>,
+  //   count: number
+  // ) => {
+  //   const countValue = target.value;
+  //   if (Number(countValue) >= count) {
+  //     dispatch(lastValueCountChanging(Number(countValue)));
+  //   }
+  // };
+  const handleChangeFirst = (
+    { target }: React.ChangeEvent<HTMLInputElement>,
+    count: number,
+    func: (countValue: number) => (dispatch: AppDispatch) => Promise<void>
+  ) => {
+    const countValue = target.value;
+    if (Number(countValue) <= count) {
+      dispatch(func(Number(countValue)));
+    }
+  };
+  const handleChangeLast = (
+    { target }: React.ChangeEvent<HTMLInputElement>,
+    count: number,
+    func: (countValue: number) => (dispatch: AppDispatch) => Promise<void>
+  ) => {
+    const countValue = target.value;
+    if (Number(countValue) >= count) {
+      dispatch(func(Number(countValue)));
+    }
+  };
+
   useEffect(() => {
     dispatch(firstValuePriceChanging(minPrice));
     dispatch(lastValuePriceChanging(maxPrice));
     dispatch(firstValueRatingChanging(minRating));
     dispatch(lastValueRatingChanging(maxRating));
-  }, [dispatch, minPrice, maxPrice, minRating, maxRating]);
+    dispatch(firstValueCountChanging(minCount));
+    dispatch(lastValueCountChanging(maxCount));
+  }, [dispatch, minPrice, maxPrice, minRating, maxRating, minCount, maxCount]);
   return (
     <Container>
       <SliderContainer>
@@ -74,17 +117,16 @@ export const Filter: React.FC = () => {
             min={minPrice}
             max={maxPrice}
             onChange={(e) => {
-              dispatch(firstValuePriceChanging(Number(e.target.value)));
+              handleChangeFirst(e, lastValuePrice, firstValuePriceChanging);
             }}
           />
           <Slider
             max={maxPrice}
             value={lastValuePrice}
-            // min={minPrice}
             type={'range'}
             step={10.99}
             onChange={(e) => {
-              dispatch(lastValuePriceChanging(Number(e.target.value)));
+              handleChangeLast(e, firstValuePrice, lastValuePriceChanging);
             }}
           />
         </Track>
@@ -96,7 +138,7 @@ export const Filter: React.FC = () => {
             max={maxPrice}
             step={10.99}
             onChange={(e) => {
-              dispatch(firstValuePriceChanging(Number(e.target.value)));
+              handleChangeFirst(e, lastValuePrice, firstValuePriceChanging);
             }}
           />
           <SliderInput
@@ -106,7 +148,7 @@ export const Filter: React.FC = () => {
             max={maxPrice}
             value={lastValuePrice}
             onChange={(e) => {
-              dispatch(lastValuePriceChanging(Number(e.target.value)));
+              handleChangeLast(e, firstValuePrice, lastValuePriceChanging);
             }}
           />
         </SliderInputs>
@@ -121,7 +163,7 @@ export const Filter: React.FC = () => {
             min={minRating}
             max={maxRating}
             onChange={(e) => {
-              dispatch(firstValueRatingChanging(Number(e.target.value)));
+              handleChangeFirst(e, lastValueRating, firstValueRatingChanging);
             }}
           />
           <Slider
@@ -130,13 +172,41 @@ export const Filter: React.FC = () => {
             step={0.2}
             max={maxRating}
             onChange={(e) => {
-              dispatch(lastValueRatingChanging(Number(e.target.value)));
+              handleChangeLast(e, firstValueRating, lastValueRatingChanging);
             }}
           />
         </Track>
         <SliderLabels>
           <SliderLabel>{firstValueRating}</SliderLabel>
           <SliderLabel>{lastValueRating}</SliderLabel>
+        </SliderLabels>
+      </SliderContainer>
+      <SliderContainer>
+        <SliderText>Count range</SliderText>
+        <Track>
+          <Slider
+            value={firstValueCount}
+            type={'range'}
+            step={1}
+            min={minCount}
+            max={maxCount}
+            onChange={(e) => {
+              handleChangeFirst(e, lastValueCount, firstValueCountChanging);
+            }}
+          />
+          <Slider
+            value={lastValueCount}
+            type={'range'}
+            step={1}
+            max={maxCount}
+            onChange={(e) => {
+              handleChangeLast(e, firstValueCount, lastValueCountChanging);
+            }}
+          />
+        </Track>
+        <SliderLabels>
+          <SliderLabel>{firstValueCount}</SliderLabel>
+          <SliderLabel>{lastValueCount}</SliderLabel>
         </SliderLabels>
       </SliderContainer>
     </Container>
