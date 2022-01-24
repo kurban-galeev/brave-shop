@@ -28,7 +28,6 @@ const initialState: UserState = {
   error: '',
   title: ['all items'],
   isDetail: false,
-  // countItem: [],
   firstValuePrice: 0,
   firstValueRating: 0,
   firstValueCount: 0,
@@ -67,7 +66,6 @@ const handleInputArray = (Array: IClothingInfo[]) => {
   );
   return itemsCart;
 };
-// const getFir
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,

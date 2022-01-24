@@ -5,7 +5,7 @@ import {
   ImageMenu,
   PriceItems,
 } from './style';
-import { IFooter } from '../../models/interfaces';
+import { IFooter } from '../../models/IInterfaces';
 import { footerList } from '../constants';
 export const Footer: React.FC = () => {
   return (

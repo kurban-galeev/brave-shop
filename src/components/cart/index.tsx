@@ -23,6 +23,7 @@ import {
   ButtonSubmit,
 } from './style';
 import { pasteCountItem } from '../../store/reducers/ActionCreators';
+import { NextRouter, useRouter } from 'next/router';
 
 const getSumPriceItem = (price: number, count: number) => {
   return (price * count).toFixed(2);
@@ -35,6 +36,7 @@ const getTotalSumItem = (array: IClothingInfo[]) => {
   return sum.toFixed(2);
 };
 export const Cart: React.FC = () => {
+  const router: NextRouter = useRouter();
   const dispatch = useAppDispatch();
   const { itemsForCart } = useAppSelector((state) => state.itemsReducers);
   const handleChangeCount = (
@@ -129,7 +131,13 @@ export const Cart: React.FC = () => {
           <TitleSummary>
             Total sum: {getTotalSumItem(itemsForCart)}RWF
           </TitleSummary>
-          <ButtonSubmit>Proceed to checkout</ButtonSubmit>
+          <ButtonSubmit
+            onClick={() => {
+              router.push('/');
+            }}
+          >
+            Proceed to checkout
+          </ButtonSubmit>
         </ContainerSummary>
       </ContainerCartAndSum>
       <Footer />

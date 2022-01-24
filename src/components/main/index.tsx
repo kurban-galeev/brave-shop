@@ -8,7 +8,7 @@ import {
   pasteClothingInfo,
 } from '../../store/reducers/ActionCreators';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { IItems } from '../../models/interfaces';
+import { IItems } from '../../models/IInterfaces';
 import { GlassMagnifier } from 'react-image-magnifiers';
 import {
   TextLogo,
