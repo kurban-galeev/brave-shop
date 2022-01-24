@@ -38,6 +38,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
+        <title>Brave Shop</title>
         <Head>
           <link rel="icon" href="/sportShoe.png" />
           <link rel="preconnect" href="https://fonts.googleapis.com"></link>
